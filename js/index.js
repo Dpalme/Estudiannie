@@ -54,6 +54,7 @@ function clear() {
 function new_question() {
 	if (questions.length > 0){
 		set_question(questions[Math.floor(Math.random() * questions.length)]);
+		clearEdit();
 	} else {
 		if (confirm("No questions, add new ones") && document.getElementById("editMenu") === null){
 			edit_questions();
