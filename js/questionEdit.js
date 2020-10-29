@@ -8,19 +8,29 @@ function edit_questions() {
 		children: [
 			object({
 				type: "div",
-				classList: "padding-v-s block margin-v-1",
+				classList: "padding-v-s block",
 				children: [
 					object({
-						type: "input",
-						classList: "col-5 margin-b-1",
-						id: "question_inp"
+						type: "label",
+						classList: "col-3 col-1-o black",
+						innerText: "Question",
+						child: object({
+							type: "input",
+							classList: "col-3 col-1-o",
+							id: "question_inp"
+						})
 					}), object({
-						type: "input",
-						classList: "col-5 col-1-o",
-						id: "answer_inp"
+						type: "label",
+						classList: "col-3 col-1-o black",
+						innerText: "Answer",
+						child: object({
+							type: "input",
+							classList: "col-3 col-1-o",
+							id: "answer_inp"
+						})
 					}), object({
 						type: "button",
-						classList: "padding-v-s col-2 col-1-o",
+						classList: "padding-v-s col-3 col-1-o margin-v-s",
 						onclick: "putQuestInDb()",
 						innerText: "CREAR PREGUNTA"
 					})
@@ -28,21 +38,21 @@ function edit_questions() {
 			}), object({
 				type: "button",
 				onclick: "createNewGroup()",
-				classList: "padding-v-s col-2",
+				classList: "padding-v-s col-3 margin-v-s",
 				innerText: "CREATE GROUP",
 			}), object({
 				type: "button",
-				classList: "padding-v-s col-2 margin-l-1",
+				classList: "padding-v-s col-3 col-1-o margin-v-s",
 				onclick: "deleteGroup()",
 				innerText: "DELETE GROUP",
 			}), object({
 				type: "button",
-				classList: "padding-v-s col-2 margin-l-1",
+				classList: "padding-v-s col-3 col-1-o margin-v-s",
 				onclick: "clearGroup()",
 				innerText: "CLEAR QUESTIONS",
 			}), object({
 				type: "button",
-				classList: "padding-v-s col-2 margin-l-1",
+				classList: "padding-v-s col-3 col-1-o margin-v-s",
 				onclick: "clearEdit()",
 				innerText: "CLOSE",
 			})
