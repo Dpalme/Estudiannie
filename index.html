@@ -34,8 +34,10 @@
 <script src="./js/questionEdit.js"></script>
 
 <style>
-    .container .col-1-o {
-        margin-left: 0 !important;
+    @media (orientation: portrait) {
+        .container .col-1-o {
+            margin-left: 0 !important;
+        }
     }
 </style>
 </head>
@@ -43,9 +45,9 @@
 <body onload="start()" class="night">
 
     <div>
-        <select name="db_select" id="db_select" onchange="update_question_list()" class="margin-l-1 margin-t-s w-3"></select>
-        <button onclick="new_question()" class="padding-v-s margin-l-1 margin-t-s w-3 white">GET QUESTION</button>
-        <button onclick="edit_questions()" class="padding-v-s margin-l-1 margin-t-s w-3 white">EDIT QUESTIONS</button>
+        <select name="db_select" id="db_select" onchange="update_question_list()" class="col-1-o margin-t-s w-3"></select>
+        <button onclick="new_question()" class="padding-v-s col-1-o margin-t-s w-3 white">GET QUESTION</button>
+        <button onclick="edit_questions()" class="padding-v-s col-1-o margin-t-s w-3 white">EDIT QUESTIONS</button>
     </div>
 
     <main class="container top-margin" id="content">
