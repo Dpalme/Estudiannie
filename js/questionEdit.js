@@ -8,7 +8,7 @@ function edit_questions() {
 		children: [
 			object({
 				type: "div",
-				classList: "padding-v-s block col-9",
+				classList: "padding-v-s block col-8",
 				children: [
 					object({
 						type: "label",
@@ -16,7 +16,7 @@ function edit_questions() {
 						innerText: "Question",
 						child: object({
 							type: "input",
-							classList: "w-3",
+							classList: "w-3 white",
 							id: "question_inp"
 						})
 					}), object({
@@ -25,7 +25,7 @@ function edit_questions() {
 						innerText: "Answer",
 						child: object({
 							type: "input",
-							classList: "w-3",
+							classList: "w-3 white",
 							id: "answer_inp"
 						})
 					}), object({
@@ -42,7 +42,7 @@ function edit_questions() {
 				innerText: "CREATE GROUP",
 			}), object({
 				type: "button",
-				classList: "padding-v-s w-3 col-1-o margin-v-s",
+				classList: "padding-v-s w-3 col-1-o margin-s",
 				onclick: "deleteGroup()",
 				innerText: "DELETE GROUP",
 			}), object({
@@ -52,7 +52,7 @@ function edit_questions() {
 				innerText: "CLEAR QUESTIONS",
 			}), object({
 				type: "button",
-				classList: "padding-v-s w-3 col-1-o margin-v-s",
+				classList: "padding-v-s w-3 col-1-o margin-s",
 				onclick: "clearEdit()",
 				innerText: "CLOSE",
 			})
