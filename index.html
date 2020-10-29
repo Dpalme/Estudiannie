@@ -27,18 +27,23 @@
 <link rel='stylesheet' href='https://dpalme.github.io/Peoria/css/peoria-0-4-1.css'>
 <link rel='stylesheet' href='https://dpalme.github.io/Peoria/css/normalize.css'>
 
-<script src="./js/main.js"></script>
+<script src="https://dpalme.github.io/Peoria/peoria.js"></script>
+<script src="./js/database.js"></script>
+<script src="./js/index.js"></script>
+<script src="./js/questionEdit.js"></script>
 <script src="./js/preguntas.js"></script>
 </head>
 
-<body onload="start()">
+<body onload="start()" class="night">
 
-    <div class="margin-v-1">
-        <button onclick="new_question()" class="padding-s margin-l-1 w-3 white">NEW</button>
+    <div>
+        <select name="db_select" id="db_select" onchange="update_question_list()" class="margin-l-1 margin-t-s w-3"></select>
+        <button onclick="new_question()" class="padding-v-s margin-l-1 margin-t-s w-3 white">GET QUESTION</button>
+        <button onclick="edit_questions()" class="padding-v-s margin-l-1 margin-t-s w-3 white">EDIT QUESTIONS</button>
     </div>
 
-    <div class="container top-margin" id="main">
+    <main class="container top-margin" id="content">
 
-    </div>
+    </main>
 </body>
 </html>
