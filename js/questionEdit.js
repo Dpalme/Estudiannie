@@ -131,7 +131,6 @@ function deleteGroup() {
 			list_ref.delete(groupName);
 
 			clearGroup();
-			update_question_list();
 			confirm("Deleted question group " + groupName);
 		} else {
 			confirm("Can't delete the default group")

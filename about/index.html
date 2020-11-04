@@ -6,35 +6,32 @@
     <meta http-equiv='X-UA-Compatible' content='ie=edge'>
 
     <!-- Primary Meta Tags -->
-    <title>QuizDb</title>
-    <meta name='title' content='QuizDb'>
+    <title>QuizDb About</title>
+    <meta name='title' content='QuizDb About'>
     <meta name='description' content='Easy studying, saves your questions, no login!'>
 
     <!-- Open Graph / Facebook -->
     <meta property='og:type' content='website'>
     <meta property='og:url' content='https://dpalmer.in/QuizDb'>
-    <meta property='og:title' content='QuizDb'>
+    <meta property='og:title' content='QuizDb About'>
     <meta property='og:description' content='Easy studying, saves your questions, no login!'>
     <meta property='og:image' content='./uri.jpg'>
 
     <!-- Twitter -->
     <meta property='twitter:card' content='summary_large_image'>
     <meta property='og:url' content='https://dpalmer.in/QuizDb'>
-    <meta property='twitter:title' content='QuizDb'>
+    <meta property='twitter:title' content='QuizDb About'>
     <meta property='twitter:description' content='Easy studying, saves your questions, no login!'>
     <meta property='twitter:image' content='./uri.jpg'>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
 
     <!-- JS -->
     <script src="https://dpalmer.in/Peoria/peoria.js"></script>
-    <script src="./js/database.js"></script>
-    <script src="./js/index.js"></script>
-    <script src="./js/questionEdit.js"></script>
 </head>
 
-<body onload="start()">
+<body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">QuizDb</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -43,22 +40,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" onlcik="edit_questions()" href="./about">About</a>
+                <a class="nav-item nav-link active" href="../">Home</a>
+                <a class="nav-item nav-link" href="#">About <span class="sr-only">(current)</span></a>
             </div>
         </div>
     </nav>
 
-    <div class="container mt-5">
-        <select name="db_select" id="db_select" onchange="update_question_list()" class="form-control mb-3"></select>
-        <div class="form-group">
-            <button onclick="new_question()" class="btn btn-secondary">Get Question</button>
-            <button onclick="edit_questions()" class="btn btn-secondary">Edit Questions</button>
-        </div>
-    </div>
-
     <main class="container" id="content">
-
+        <h1>About QuizDb</h1>
+        <p>QuizDb is an application developed by students that uses IndexedDB to store locally all your question and answers!</p>
     </main>
 </body>
 
