@@ -37,20 +37,16 @@
 <body onload="start()">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">QuizDb</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" onlcik="edit_questions()" href="./about">About</a>
-            </div>
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active">Home</a>
+            <a class="nav-item nav-link " href="./about/">About <span class="sr-only">(current)</span></a>
         </div>
     </nav>
 
     <div class="container mt-5">
+        <label for="db_select">Question group:</label>
         <select name="db_select" id="db_select" onchange="update_question_list()" class="form-control mb-3"></select>
+        <p id="questions-numb">Number of questions in group: </p>
         <div class="form-group">
             <button onclick="new_question()" class="btn btn-secondary">Get Question</button>
             <button onclick="edit_questions()" class="btn btn-secondary">Edit Questions</button>

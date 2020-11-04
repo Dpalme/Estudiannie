@@ -89,6 +89,7 @@ function update_question_list(){
 
             // continue on to the next item in the cursor
             cursor.continue();
-        }
-    }
+		}
+		document.getElementById("questions-numb").innerText = "Number of questions in current group: " + questions.length;
+	}
 }
