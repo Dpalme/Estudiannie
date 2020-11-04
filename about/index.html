@@ -33,11 +33,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">QuizDb</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <a class="navbar-brand">QuizDb</a>
         <div class="navbar-nav">
             <a class="nav-item nav-link " href="../">Home</a>
             <a class="nav-item nav-link active">About <span class="sr-only">(current)</span></a>
@@ -45,8 +41,42 @@
     </nav>
 
     <main class="container" id="content">
-        <h1>About QuizDb</h1>
-        <p>QuizDb is an application developed by students that uses IndexedDB to store locally all your question and answers!</p>
+        <div class="row">
+            <h1 class="w-100">About QuizDb</h1>
+            <p>Esta aplicación tiene como objetivo facilitar a los estudiantes la manera en que pueden crear flashcards y
+                poder estudiar más fácilmente. Se pueden crear diferentes grupos de preguntas y clasificar las preguntas
+                dentro de esos grupos como los usuarios quieran. Un ejemplo de eso sería poder clasificar las preguntas por
+                materia y así poder estudiar para la materia que sea necesario. Una vez elegido el grupo el usuario puede
+                solicitar una pregunta elegida aleatoriamente con su respectiva respuesta.</p>
+        </div>
+        
+        <div class="row">
+            <h1 class="w-100 mt-3">Base de Datos</h1>
+            <p>IndexedDB es una base de datos transaccional como cualquier base de datos relacional basada en SQL, indexedDB es una base de datos basada en JavaScript la cual maneja objetos JSON de una BD NoSQL, tiene como ventaja la facilidad de mapear objetos completos a pesar de que no se cuente con sus atributos totalmente definidos.
+                <br><br>
+                Las operaciones de IndexedDB son asíncronas, esto con el objetivo de no bloquear aplicaciones. Sin embargo, si se necesita la implementación síncrona se piensa reintroducir la funcionalidad si los desarrolladores lo requieren.
+                <br><br>         
+                IndexedDB usa Object Stores en lugar de lo que normalmente conocemos como tablas. Para QuizDb, usamos 2 object stores, list_ref y questions.
+                <br><br>
+                La aplicación usa Bootstrap 4.1 y Peoria.js para lograr su interfaz minimalista, dinámica y contenida en una página.
+                </p>
+        </div>
+        <div class="row">
+            <h1 class="w-100 mt-3">Modelo</h1>
+            <p>En list_ref se guarda el nombre de los diferentes grupos de preguntas mientras que en questions se guardan las preguntas.<br>
+                <br>
+                <span class="h3 text-primary">list_ref</span><br>
+                El object store list_ref es el encargado de mantener el registro de todos los diferentes grupos de preguntas que están en la base de datos.<br>
+                <br>
+                Contiene únicamente una columna “name”, el string tiene que ser único y por tanto, no contiene índices numéricos.<br>
+                <br>
+                <span class="h3 text-primary">questions</span><br>
+                Contiene cuatro columnas. id, question, answer y group.<br>
+                id: Valor numérico por el cual se ordenan las preguntas almacenadas.<br>
+                question: string no único<br>
+                answer: string no único<br>
+                group: nombre del grupo de preguntas al que pertenece la pregunta</p>
+        </div>
     </main>
 </body>
 
