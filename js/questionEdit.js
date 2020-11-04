@@ -1,63 +1,76 @@
 function edit_questions() {
-	clear()
+	if (document.getElementById("editMenu") === null) {
+		clear()
 
-	objectToContent({
-		type: "div",
-		classList: "card white",
-		id: "editMenu",
-		children: [
-			object({
-				type: "div",
-				classList: "padding-v-s block col-8",
-				children: [
-					object({
-						type: "label",
-						classList: "w-3 black",
-						innerText: "Question",
-						child: object({
-							type: "input",
-							classList: "w-3 white",
-							id: "question_inp"
+		objectToContent({
+			type: "div",
+			classList: "card shadow",
+			id: "editMenu",
+			children: [
+				object({
+					type: "div",
+					classList: "card-body",
+					children: [
+						object({
+							type: "label",
+							innerText: "Question:",
+							for: "question_inp",
+							classList: "col",
+							child: object({
+								type: "textarea",
+								classList: "form-control",
+								id: "question_inp"
+							})
+						}), object({
+							type: "label",
+							innerText: "Answer:",
+							for: "answer_inp",
+							classList: "col",
+							child: object({
+								type: "textarea",
+								classList: "form-control",
+								id: "answer_inp"
+							})
+						}), object({
+							type: "button",
+							classList: "btn btn-primary ml-3",
+							onclick: "putQuestInDb()",
+							innerText: "Add Question"
+						}), object({
+							type: "div",
+							classList: "alert alert-success ml-3 mt-4 d-none",
+							id: "added-suc",
+							innerText: "Added Question."
+						}), object({
+							type: "div",
+							classList: "alert alert-danger ml-3 mt-4 d-none",
+							id: "added-dan",
+							innerText: "Both Question and Answer need to have text."
 						})
-					}), object({
-						type: "label",
-						classList: "w-3 black",
-						innerText: "Answer",
-						child: object({
-							type: "input",
-							classList: "w-3 white",
-							id: "answer_inp"
-						})
+					]
+				}), object({
+					type: "div",
+					classList: "card-body",
+					children: [object({
+						type: "button",
+						onclick: "createNewGroup()",
+						classList: "btn btn-outline-success mr-1 ml-3",
+						innerText: "Create Group",
 					}), object({
 						type: "button",
-						classList: "padding-v-s w-3 col-1-o margin-v-s",
-						onclick: "putQuestInDb()",
-						innerText: "CREAR PREGUNTA"
-					})
-				]
-			}), object({
-				type: "button",
-				onclick: "createNewGroup()",
-				classList: "padding-v-s w-3 margin-v-s",
-				innerText: "CREATE GROUP",
-			}), object({
-				type: "button",
-				classList: "padding-v-s w-3 col-1-o margin-s",
-				onclick: "deleteGroup()",
-				innerText: "DELETE GROUP",
-			}), object({
-				type: "button",
-				classList: "padding-v-s w-3 col-1-o margin-v-s",
-				onclick: "clearGroup()",
-				innerText: "CLEAR QUESTIONS",
-			}), object({
-				type: "button",
-				classList: "padding-v-s w-3 col-1-o margin-s",
-				onclick: "clearEdit()",
-				innerText: "CLOSE",
-			})
-		]
-	})
+						classList: "btn btn-outline-danger mr-1",
+						onclick: "deleteGroup()",
+						innerText: "Delete Group",
+					}), object({
+						type: "button",
+						classList: "btn btn-outline-danger",
+						onclick: "clearGroup()",
+						innerText: "Clear Question Group",
+					})]
+				})
+			]
+		})
+	}
 }
 
 function refreshGroupList() {
@@ -77,19 +90,18 @@ function refreshGroupList() {
 		}
 
 		for (i = 0; i < names.length; i++) {
-			option = object({
+			db_select.appendChild(object({
 				type: "option",
-				innerText: names[i]["name"]
-			})
-			option.setAttribute("value", names[i]["name"]);
-			db_select.appendChild(option)
+				innerText: names[i]["name"],
+				value: names[i]["name"]
+			}))
 		}
 	}
 }
 
 function createNewGroup() {
 	var groupName = prompt('Name for new question group');
-	if (groupName != "") {
+	if (groupName && groupName != "") {
 		var db = DBOpenRequest.result;
 
 		// Open a transaction to the database
@@ -103,8 +115,6 @@ function createNewGroup() {
 		refreshGroupList();
 		update_question_list();
 		return tx.complete;
-	} else {
-		confirm("No group was created");
 	}
 }
 
@@ -112,14 +122,14 @@ function deleteGroup() {
 	var db = DBOpenRequest.result;
 	var groupName = document.getElementById('db_select').value;
 
-	if (confirm('Delete question group ' + groupName + '?')){
+	if (confirm('Delete question group ' + groupName + '?')) {
 		if (groupName != "default") {
 			// Open a transaction to the database
 			var tx = db.transaction(["list_ref", "questions"], 'readwrite');
 			let list_ref = tx.objectStore("list_ref");
-	
+
 			list_ref.delete(groupName);
-	
+
 			clearGroup();
 			update_question_list();
 			confirm("Deleted question group " + groupName);
@@ -132,48 +142,58 @@ function deleteGroup() {
 function putQuestInDb() {
 	var new_question = document.getElementById("question_inp").value;
 	var new_answer = document.getElementById("answer_inp").value;
-
-	document.getElementById("question_inp").value = "";
-	document.getElementById("answer_inp").value = "";
+	document.getElementById("added-suc").classList.add("d-none")
+	document.getElementById("added-dan").classList.add("d-none")
 
 	if (new_question != "" && new_answer != "") {
-		var db = DBOpenRequest.result;
-
-		// Open a transaction to the database
-		var tx = db.transaction("questions", 'readwrite');
-		var store = tx.objectStore("questions");
-		store.add({
-			question: new_question,
-			answer: new_answer,
-			table: document.getElementById("db_select").value
-		});
-		console.log("Added question");
-		update_question_list();
-		return tx.complete;
+		addQuestion(new_question, new_answer);
+		document.getElementById("added-suc").classList.remove("d-none")
+	} else {
+		document.getElementById("added-dan").classList.remove("d-none")
 	}
+}
+
+function addQuestion(new_question, new_answer){
+	var db = DBOpenRequest.result;
+
+	// Open a transaction to the database
+	var tx = db.transaction("questions", 'readwrite');
+	var store = tx.objectStore("questions");
+	store.add({
+		question: new_question,
+		answer: new_answer,
+		table: document.getElementById("db_select").value
+	});
+	console.log("Added question");
+	document.getElementById("question_inp").value = "";
+	document.getElementById("answer_inp").value = "";
+	update_question_list();
+	return tx.complete;
 }
 
 function clearGroup() {
 	var db = DBOpenRequest.result;
 	var groupName = document.getElementById('db_select').value;
 
-	// Open a transaction to the database
-	var tx = db.transaction(["list_ref", "questions"], 'readwrite');
-	let question_db = tx.objectStore("questions");
+	if (confirm('Clear question group ' + groupName + '?')) {
+		// Open a transaction to the database
+		var tx = db.transaction(["list_ref", "questions"], 'readwrite');
+		let question_db = tx.objectStore("questions");
 
-	var request = question_db.getAll();
+		var request = question_db.getAll();
 
-	request.onsuccess = function (e) {
-		var questions = e.target.result;
-		for (i = 0; i < questions.length; i++) {
-			if (questions[i]["table"] == groupName) {
-				question_db.delete(questions[i]["id"])
+		request.onsuccess = function (e) {
+			var questions = e.target.result;
+			for (i = 0; i < questions.length; i++) {
+				if (questions[i]["table"] == groupName) {
+					question_db.delete(questions[i]["id"])
+				}
 			}
+			console.log("Cleared question group " + groupName);
+			refreshGroupList()
+			update_question_list()
+			return tx.complete;
 		}
-		console.log("Cleared question group " + groupName);
-		refreshGroupList()
-		update_question_list()
-		return tx.complete;
 	}
 }
 

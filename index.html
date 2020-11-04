@@ -1,57 +1,72 @@
 <html lang='en'>
+
 <head>
-<meta charset='UTF-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1.0'>
-<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
 
-<!-- Primary Meta Tags -->
-<title>QuizDb</title>
-<meta name='title' content='QuizDb'>
-<meta name='description' content='Easy studying, saves your questions, no login!'>
+    <!-- Primary Meta Tags -->
+    <title>QuizDb</title>
+    <meta name='title' content='QuizDb'>
+    <meta name='description' content='Easy studying, saves your questions, no login!'>
 
-<!-- Open Graph / Facebook -->
-<meta property='og:type' content='website'>
-<meta property='og:url' content='https://dpalmer.in/QuizDb'>
-<meta property='og:title' content='QuizDb'>
-<meta property='og:description' content='Easy studying, saves your questions, no login!'>
-<meta property='og:image' content='./uri.jpg'>
+    <!-- Open Graph / Facebook -->
+    <meta property='og:type' content='website'>
+    <meta property='og:url' content='https://dpalmer.in/QuizDb'>
+    <meta property='og:title' content='QuizDb'>
+    <meta property='og:description' content='Easy studying, saves your questions, no login!'>
+    <meta property='og:image' content='./uri.jpg'>
 
-<!-- Twitter -->
-<meta property='twitter:card' content='summary_large_image'>
-<meta property='og:url' content='https://dpalmer.in/QuizDb'>
-<meta property='twitter:title' content='QuizDb'>
-<meta property='twitter:description' content='Easy studying, saves your questions, no login!'>
-<meta property='twitter:image' content='./uri.jpg'>
+    <!-- Twitter -->
+    <meta property='twitter:card' content='summary_large_image'>
+    <meta property='og:url' content='https://dpalmer.in/QuizDb'>
+    <meta property='twitter:title' content='QuizDb'>
+    <meta property='twitter:description' content='Easy studying, saves your questions, no login!'>
+    <meta property='twitter:image' content='./uri.jpg'>
 
-<!-- CSS -->
-<link rel='stylesheet' href='https://dpalmer.in/Peoria/css/peoria-0-4-1.css'>
-<link rel='stylesheet' href='https://dpalmer.in/Peoria/css/normalize.css'>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/bootstrap.css">
 
-<!-- JS -->
-<script src="https://dpalmer.in/Peoria/peoria.js"></script>
-<script src="./js/database.js"></script>
-<script src="./js/index.js"></script>
-<script src="./js/questionEdit.js"></script>
+    <!-- JS -->
+    <script src="https://dpalmer.in/Peoria/peoria.js"></script>
+    <script src="./js/database.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./js/questionEdit.js"></script>
 
-<style>
-    @media (orientation: portrait) {
-        .container .col-1-o {
-            margin-left: 0 !important;
+    <style>
+        @media (orientation: portrait) {
+            .container .col-1-o {
+                margin-left: 0 !important;
+            }
         }
-    }
-</style>
+    </style>
 </head>
 
-<body onload="start()" class="night">
+<body onload="start()">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">QuizDb</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" onlcik="edit_questions()" href="#">About</a>
+            </div>
+        </div>
+    </nav>
 
-    <div>
-        <select name="db_select" id="db_select" onchange="update_question_list()" class="col-1-o margin-t-s w-3"></select>
-        <button onclick="new_question()" class="padding-v-s col-1-o margin-t-s w-3 white">GET QUESTION</button>
-        <button onclick="edit_questions()" class="padding-v-s col-1-o margin-t-s w-3 white">EDIT QUESTIONS</button>
+    <div class="container mt-5">
+        <select name="db_select" id="db_select" onchange="update_question_list()" class="form-control mb-3"></select>
+        <div class="form-group">
+            <button onclick="new_question()" class="btn btn-secondary">Get Question</button>
+        </div>
     </div>
 
-    <main class="container top-margin" id="content">
+    <main class="container" id="content">
 
     </main>
 </body>
+
 </html>
